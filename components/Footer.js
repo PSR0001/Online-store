@@ -1,5 +1,6 @@
 import React from 'react'
-
+import Image from 'next/image'
+import Link from 'next/link'
 export const Footer = () => {
   return (
     <div>
@@ -74,12 +75,15 @@ export const Footer = () => {
   </div>
   <div className="bg-gray-100">
     <div className="container px-5 py-6 mx-auto flex items-center sm:flex-row flex-col">
+    <Link href="/">
       <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-        <img src="/logo.png" alt="logo" height="30px" width="30px" />
+          
+        <Image src="/logo.png" alt="logo" height={30} width={30} />
         <span className="ml-3 text-xl text-blue-800"><strong>Online Store</strong></span>
       </a>
-      <p className="text-sm text-gray-500 sm:ml-6 sm:mt-0 mt-4">© 2020 Tailblocks —
-        <a href="https://twitter.com/knyttneve" rel="noopener noreferrer" className="text-gray-600 ml-1" target="_blank">@knyttneve</a>
+      </Link>
+      <p className="text-sm text-gray-500 sm:ml-6 sm:mt-0 mt-4">© 2022 Online Store —
+        <a href="https://twitter.com/knyttneve" rel="noopener noreferrer" className="text-gray-600 ml-1" target="_blank">@PSR Ltd</a>
       </p>
       <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
         <a className="text-gray-500">
