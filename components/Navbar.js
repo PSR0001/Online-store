@@ -8,15 +8,15 @@ const Navbar = () => {
     <div>
       <header  className="text-gray-600 bg-white shadow-md  body-font">
         <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-          <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+          <Link href='/'><a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
             <Image src="/logo.png" height={35} width={35} />
             <span className="ml-3 text-xl text-blue-900">Online Store</span>
-          </a>
+          </a></Link>
           <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
-            <a className="mr-5 font-bold hover:text-gray-900">Tsharts</a>
-            <a className="mr-5 hover:text-gray-900">Hoodies</a>
-            <a className="mr-5 hover:text-gray-900">Stickers</a>
-            <a className="mr-5 hover:text-gray-900">Mugs</a>
+            <Link href='/tshart'><a className="mr-5 font-bold hover:text-gray-900">Tsharts</a></Link>
+            <Link href='/hoodies'><a className="mr-5 hover:text-gray-900">Hoodies</a></Link>
+            <Link href='/sticker'><a className="mr-5 hover:text-gray-900">Stickers</a></Link>
+            <Link href='/mugs'><a className="mr-5 hover:text-gray-900">Mugs</a></Link>
           </nav>
           <AiOutlineShoppingCart className="text-3xl" />
           <svg
