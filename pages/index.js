@@ -1,12 +1,13 @@
 import React from 'react'
 import { Footer } from '../components/Footer'
+import Home from '../components/Home'
+import Navbar from '../components/Navbar'
 
 const index = () => {
   return (
     <div>
-        <div className="mx-4">
-            hello my name is Partha Singha Roy
-        </div>
+      <Navbar/>
+        <Home/>
 
 
         <Footer/>
