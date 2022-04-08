@@ -1,9 +1,29 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineShoppingCart, AiOutlinePoweroff } from "react-icons/ai";
+import { useRef } from "react";
+import Cart from "./Cart.js"
+
 
 const Navbar = () => {
+
+const toggleCart =()=>{
+  // console.log("fff");
+  if (ref.current.classList.contains('translate-x-full')){
+    ref.current.classList.remove('translate-x-full')
+    ref.current.classList.add('translate-x-0')
+    
+  }
+ else if (!ref.current.classList.contains('translate-x-full')){
+    ref.current.classList.add('translate-x-full')
+    ref.current.classList.remove('translate-x-0')
+  }
+} 
+
+const ref = useRef()
+
+
   return (
     <div>
       <header  className="text-gray-600 bg-white shadow-md  body-font">
@@ -18,13 +38,13 @@ const Navbar = () => {
             <Link href='/sticker'><a className="mr-5 hover:text-gray-900">Stickers</a></Link>
             <Link href='/mugs'><a className="mr-5 hover:text-gray-900">Mugs</a></Link>
           </nav>
-          <AiOutlineShoppingCart className="text-3xl" />
+          <span onClick={toggleCart} className="cursor-pointer" ><AiOutlineShoppingCart className="text-3xl" /></span>
           <svg
             fill="none"
             stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
             className="w-4 h-4 ml-1"
             viewBox="0 0 24 24"
           >
@@ -32,6 +52,16 @@ const Navbar = () => {
           </svg>
         </div>
       </header>
+
+    {/* Sidebar */}
+    <div ref={ref} className="sidebar rounded-bl-md z-50 transition-transform delay-500  duration-300 ease-out bg-slate-100 absolute top-0 right-0 p-10 translate-x-full transform ">
+      <h2 className="font-bold text-xl">Shoping Cart
+      <span onClick={toggleCart} className="absolute cursor-pointer top-8 right-8"><AiOutlinePoweroff/></span></h2>
+                
+<Cart/>
+    </div>
+
+
     </div>
   );
 };
