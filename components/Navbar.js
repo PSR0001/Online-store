@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineShoppingCart, AiOutlinePoweroff } from "react-icons/ai";
+import { MdOutlineAccountCircle } from "react-icons/md";
 import { useRef } from "react";
 import Cart from "./Cart.js"
 
@@ -38,7 +39,8 @@ const ref = useRef()
             <Link href='/sticker'><a className="mr-5 hover:text-gray-900">Stickers</a></Link>
             <Link href='/mugs'><a className="mr-5 hover:text-gray-900">Mugs</a></Link>
           </nav>
-          <span onClick={toggleCart} className="cursor-pointer" ><AiOutlineShoppingCart className="text-3xl" /></span>
+          <Link href="/login"><MdOutlineAccountCircle className="text-3xl mx-3 hover:text-indigo-700 cursor-pointer"/></Link>
+          <span onClick={toggleCart} className="cursor-pointer hover:text-indigo-700 " ><AiOutlineShoppingCart className="text-3xl" /></span>
           <svg
             fill="none"
             stroke="currentColor"
