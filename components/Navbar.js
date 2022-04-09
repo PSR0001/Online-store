@@ -26,8 +26,8 @@ const ref = useRef()
 
 
   return (
-    <div>
-      <header  className="text-gray-600 bg-white shadow-md  body-font">
+    <div className="bg-white sticky z-10 top-0">
+      <header  className="text-gray-600  shadow-md  body-font">
         <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
           <Link href='/'><a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
             <Image src="/logo.png" height={35} width={35} />

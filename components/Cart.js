@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { BsClipboardPlus,BsClipboardMinus } from "react-icons/bs";
+import { BsClipboardPlus, BsClipboardMinus } from "react-icons/bs";
 
 const products = [
     {
@@ -29,13 +29,13 @@ const products = [
 
 const Cart = () => {
     return (
-        <div>
+        <div className='h-[100vh]'>
             <div className="mt-8">
                 <div className="flow-root">
                     <ul role="list" className="-my-6 divide-y divide-gray-200">
                         {products.map((product) => (
                             <li key={product.id} className="flex py-6">
-                                <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                <div className="h-24 w-16 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                     <img src={product.imageSrc} alt={product.imageAlt} className="h-full w-full object-cover object-center" />
                                 </div>
 
@@ -50,7 +50,7 @@ const Cart = () => {
                                         <p className="mt-1 text-sm text-gray-500">{product.color}</p>
                                     </div>
                                     <div className="flex flex-1 items-end justify-between text-sm">
-                                        <p className="text-gray-500 flex text-sm">Qty {product.quantity} <BsClipboardMinus className='mx-2 cursor-pointer hover:text-sky-700'/> <BsClipboardPlus className='cursor-pointer hover:text-sky-700'/></p>
+                                        <p className="text-gray-500 flex text-sm">Qty {product.quantity} <BsClipboardMinus className='mx-2 cursor-pointer hover:text-sky-700' /> <BsClipboardPlus className='cursor-pointer hover:text-sky-700' /></p>
 
                                         <div className="flex">
                                             <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500">
@@ -65,7 +65,7 @@ const Cart = () => {
                 </div>
             </div>
 
-<hr/>
+            <hr />
             <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                 <div className="flex justify-between text-base font-medium text-gray-900">
                     <p>Subtotal</p>
@@ -88,8 +88,8 @@ const Cart = () => {
                 </div>
                 <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                     <p>
-                       
-                        <button type="button"  className="font-medium text-indigo-600 hover:text-indigo-500">
+
+                        <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500">
                             Continue Shopping<span aria-hidden="true"> &rarr;</span>
                         </button>
                     </p>
