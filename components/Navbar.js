@@ -56,7 +56,7 @@ const ref = useRef()
     {/* Sidebar */}
     <div ref={ref} className="sidebar rounded-bl-md z-50 transition-transform delay-500  duration-300 ease-out bg-slate-100 absolute top-0 right-0 p-10 translate-x-full transform ">
       <h2 className="font-bold text-xl">Shoping Cart
-      <span onClick={toggleCart} className="absolute cursor-pointer top-8 right-8"><AiOutlinePoweroff/></span></h2>
+      <span onClick={toggleCart} className="absolute cursor-pointer top-8 right-8"><AiOutlinePoweroff className="hover:text-red-500"/></span></h2>
                 
 <Cart/>
     </div>

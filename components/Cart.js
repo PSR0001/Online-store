@@ -50,7 +50,7 @@ const Cart = () => {
                                         <p className="mt-1 text-sm text-gray-500">{product.color}</p>
                                     </div>
                                     <div className="flex flex-1 items-end justify-between text-sm">
-                                        <p className="text-gray-500 flex text-sm">Qty {product.quantity} <BsClipboardMinus className='mx-2 hover:text-sky-700'/> <BsClipboardPlus className='hover:text-sky-700'/></p>
+                                        <p className="text-gray-500 flex text-sm">Qty {product.quantity} <BsClipboardMinus className='mx-2 cursor-pointer hover:text-sky-700'/> <BsClipboardPlus className='cursor-pointer hover:text-sky-700'/></p>
 
                                         <div className="flex">
                                             <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500">
