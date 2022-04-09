@@ -90,9 +90,7 @@ const Signup = () => {
                 </label>
               </div>
 
-              <div className="text-sm">
-                <Link href='/forgot'><a className="font-medium text-indigo-600 hover:text-indigo-500">Forgot your password?</a></Link>
-              </div>
+              
             </div>
 
             <div>
