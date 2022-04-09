@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Link from 'next/link'
 import { BsClipboardPlus, BsClipboardMinus } from "react-icons/bs";
 
 const products = [
@@ -73,14 +73,14 @@ const Cart = () => {
                 </div>
                 <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                 <div className="mt-6">
-                    <a
-                        href="#"
+                   <Link href="/checkout"><a
+                       
                         className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                     >
                         Checkout
-                    </a>
+                    </a></Link>
                     <a
-                        href="#"
+                       
                         className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 mt-5"
                     >
                         Clear all
