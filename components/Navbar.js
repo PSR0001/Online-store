@@ -7,8 +7,9 @@ import { useRef } from "react";
 import Cart from "./Cart.js"
 
 
-const Navbar = () => {
+const Navbar = (cart ,addToCart,deleteFromCart,clearCart,subTotal) => {
 
+  console.log(cart ,addToCart,deleteFromCart,clearCart,subTotal);
 const toggleCart =()=>{
   // console.log("fff");
   if (ref.current.classList.contains('translate-x-full')){
