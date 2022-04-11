@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 const Checkout = () => {
   return (
     <div>
@@ -20,8 +21,8 @@ const Checkout = () => {
                 </small> <span className="text-gray-400 ml-1">Shopping</span> <small className="text-gray-400 ml-1">
 
                   </small> <span className="text-gray-400 ml-1">Payment</span> </div> <span>Customer Information</span>
-                <div className="relative pb-5"> <input type="text" name="mail" className="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="E-mail" /> 
-                
+                <div className="relative pb-5"> <input type="text" name="mail" className="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="E-mail" />
+
                 </div> <span>Shipping Address</span>
                 <div className="grid md:grid-cols-2 md:gap-2">
                   <input type="text" name="mail" className="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="First name*" />
@@ -38,7 +39,10 @@ const Checkout = () => {
                 <input type="text" name="mail" className="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="Country*" />
                 <input type="text" name="mail" className="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="Phone Number*" />
 
-                <div className="flex justify-between items-center pt-2"> <button type="button" className="h-12 w-24 text-blue-500 text-xs font-medium">Return to cart</button> <button type="button" className="h-12 w-48 rounded font-medium text-xs bg-blue-500 text-white">Continue to Shipping</button> </div>
+                <div className="flex justify-between items-center pt-2">
+                  <button type="button" className="h-12 w-24 text-blue-500 text-xs font-medium">Return to cart</button>
+                  
+                   <Link href={'/order'}><button type="button" className="h-12 w-48 rounded font-medium text-xs bg-blue-500 text-white">Continue to Shipping</button></Link> </div>
               </div>
             </div>
           </div>
