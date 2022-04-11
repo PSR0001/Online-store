@@ -7,9 +7,9 @@ import { useRef } from "react";
 import Cart from "./Cart.js"
 
 
-const Navbar = (cart, addToCart, deleteFromCart, clearCart, subTotal) => {
+const Navbar = ({fuck,cart, addToCart, deleteFromCart, clearCart, subTotal}) => {
 
-  // console.log(cart, addToCart, deleteFromCart, clearCart, subTotal);
+  // console.log("hey",cart, addToCart, deleteFromCart, clearCart, subTotal,"hi");
 
   //toggle the cart
   const toggleCart = () => {
@@ -63,10 +63,10 @@ const Navbar = (cart, addToCart, deleteFromCart, clearCart, subTotal) => {
         <h2 className="font-bold text-xl">Shoping Cart
           <span onClick={toggleCart} className="absolute cursor-pointer top-8 right-8"><AiOutlinePoweroff className="hover:text-red-500" /></span></h2>
 
-        <Cart cart={cart} addToCart={addToCart} deleteFromCart={deleteFromCart} clearCart={clearCart} subTotal={subTotal} />
+        <Cart fuck={fuck} cart={cart} addToCart={addToCart} deleteFromCart={deleteFromCart} clearCart={clearCart} subTotal={subTotal} />
       </div>
 
-
+    {/* <button onClick={clearCart}>hi guys</button> */}
     </div>
   );
 };

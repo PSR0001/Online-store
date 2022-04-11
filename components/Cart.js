@@ -27,9 +27,10 @@ const products = [
     // More products...
 ]
 
-const Cart = (cart, addToCart, deleteFromCart, clearCart, subTotal) => {
-    console.log("i am in cart");
-    console.log(cart, addToCart, deleteFromCart, clearCart, subTotal);
+const Cart = ({fuck,cart, addToCart, deleteFromCart, clearCart, subTotal}) => {
+   
+    // console.log(cart, addToCart, deleteFromCart, clearCart, subTotal);
+    
     return (
         <div className='h-[100vh]'>
             <div className="mt-8">
@@ -38,7 +39,7 @@ const Cart = (cart, addToCart, deleteFromCart, clearCart, subTotal) => {
                         {Object.keys(cart).length == 0 && 
                         
                         <div className='z-10'>No item in the cart</div>}
-                        {products.map((product) => (
+                        {/* {products.map((product) => (
                             <li key={product.id} className="flex py-6">
                                 <div className="h-24 w-16 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                     <img src={product.imageSrc} alt={product.imageAlt} className="h-full w-full object-cover object-center" />
@@ -65,6 +66,39 @@ const Cart = (cart, addToCart, deleteFromCart, clearCart, subTotal) => {
                                     </div>
                                 </div>
                             </li>
+                        ))} */}
+                        {Object.keys(cart).map((product) => (
+                            <li key={product.id} className="flex py-6">
+                                <div className="h-24 w-16 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                    {/* <img alt={product.imageAlt} className="h-full w-full object-cover object-center" /> */}
+                                </div>
+
+                                <div className="ml-4 flex flex-1 flex-col">
+                                    <div>
+                                        <div className="flex justify-between text-base font-medium text-gray-900">
+                                            <h3>
+                                                {/* <a href={product.href}> {product.name} </a> */}
+                                                <a > {cart[product].name} </a>
+                                            </h3>
+                                            {/* <p className="ml-4">{product.price}</p> */}
+                                        </div>
+                                        {/* <p className="mt-1 text-sm text-gray-500">{product.color}</p> */}
+                                    </div>
+                                    <div className="flex flex-1 items-end justify-between text-sm">
+                                        <p className="text-gray-500 flex text-sm">Qty {cart[product].qty} <BsClipboardMinus onClick={()=>{
+                                            deleteFromCart(product,1,cart[product].size,cart[product].name,cart[product].prise,cart[product].variant)
+                                        }} className='mx-2 cursor-pointer hover:text-sky-700' /> <BsClipboardPlus onClick={()=>{
+                                            addToCart(product,1,cart[product].size,cart[product].name,cart[product].prise,cart[product].variant)
+                                        }} className='cursor-pointer hover:text-sky-700' /></p>
+
+                                        <div className="flex">
+                                            <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500">
+                                                Remove
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
                         ))}
                     </ul>
                 </div>
@@ -78,12 +112,10 @@ const Cart = (cart, addToCart, deleteFromCart, clearCart, subTotal) => {
                 </div>
                 <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                 <div className="mt-6">
-                   <Link href="/checkout"><a
-                       
-                        className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                    >
-                        Checkout
-                    </a></Link>
+                   <Link href="/checkout"><a className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                    >Checkout</a></Link>
+
+
                     <button onClick={clearCart} className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 mt-5">Clear all</button>
                 </div>
                 <div className="mt-6 flex justify-center text-center text-sm text-gray-500">

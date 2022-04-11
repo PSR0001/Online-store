@@ -30,12 +30,12 @@ function MyApp({ Component, pageProps }) {
 
   //save the cart in local storage
   const saveToLocalStorage = (myCart) => {
-    localStorage.setItem('cart', myCart)
+    localStorage.setItem('cart', JSON.stringify(myCart))
 
     //sub total
     let subt = 0;
-    let key = Object.keys(cart)
-    for (let i = 0; key.length; i++) {
+    let key = Object.keys(myCart)
+    for (let i = 0; i<key.length; i++) {
       subt += myCart[key[i]].prise * myCart[key[i]].qty
     }
 
@@ -46,7 +46,6 @@ function MyApp({ Component, pageProps }) {
     let newCart = cart
     if (itemCode in cart) {
       newCart[itemCode].qty = newCart[itemCode].qty + qty;
-
     }
     else {
       newCart[itemCode] = { qty: 1, size, name, prise, variant }
@@ -57,9 +56,9 @@ function MyApp({ Component, pageProps }) {
 
   //clear cart function
   const clearCart = () => {
+    // console.log("YOur Cart Has been cleared");
     setCart({});
     saveToLocalStorage({})
-    console.log("YOur Cart Has been cleared");
     //Note: saveToLocalStorage(cart)---> this is wrong because in React when we run usestate set state may some time to execute !important
   }
 
@@ -77,8 +76,11 @@ function MyApp({ Component, pageProps }) {
     saveToLocalStorage(newCart)
   }
 
+    // console.log(cart, addToCart, deleteFromCart, clearCart, subTotal)
   return <>
-    <Navbar cart={cart} addToCart={addToCart} deleteFromCart={deleteFromCart} clearCart={clearCart} subTotal={subTotal} />
+    <Navbar fuck={"fuck u"} cart={cart} addToCart={addToCart} deleteFromCart={deleteFromCart} clearCart={clearCart} subTotal={subTotal} />
+  
+    
     <Component cart={cart} addToCart={addToCart} deleteFromCart={deleteFromCart} clearCart={clearCart} subTotal={subTotal} {...pageProps} />
     <Footer />
   </>
