@@ -3,36 +3,41 @@ import Link from 'next/link'
 import { BsClipboardPlus, BsClipboardMinus } from "react-icons/bs";
 
 const products = [
-    {
-        id: 1,
-        name: 'Throwback Hip Bag',
-        href: '#',
-        color: 'Salmon',
-        price: '$90.00',
-        quantity: 1,
-        imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg',
-        imageAlt: 'Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.',
-    },
-    {
-        id: 2,
-        name: 'Medium Stuff Satchel',
-        href: '#',
-        color: 'Blue',
-        price: '$32.00',
-        quantity: 1,
-        imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg',
-        imageAlt:
-            'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
-    },
+    // {
+    //     id: 1,
+    //     name: 'Throwback Hip Bag',
+    //     href: '#',
+    //     color: 'Salmon',
+    //     price: '$90.00',
+    //     quantity: 1,
+    //     imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg',
+    //     imageAlt: 'Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.',
+    // },
+    // {
+    //     id: 2,
+    //     name: 'Medium Stuff Satchel',
+    //     href: '#',
+    //     color: 'Blue',
+    //     price: '$32.00',
+    //     quantity: 1,
+    //     imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg',
+    //     imageAlt:
+    //         'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
+    // },
     // More products...
 ]
 
-const Cart = () => {
+const Cart = (cart, addToCart, deleteFromCart, clearCart, subTotal) => {
+    console.log("i am in cart");
+    console.log(cart, addToCart, deleteFromCart, clearCart, subTotal);
     return (
         <div className='h-[100vh]'>
             <div className="mt-8">
                 <div className="flow-root">
                     <ul role="list" className="-my-6 divide-y divide-gray-200">
+                        {Object.keys(cart).length == 0 && 
+                        
+                        <div className='z-10'>No item in the cart</div>}
                         {products.map((product) => (
                             <li key={product.id} className="flex py-6">
                                 <div className="h-24 w-16 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
@@ -79,12 +84,7 @@ const Cart = () => {
                     >
                         Checkout
                     </a></Link>
-                    <a
-                       
-                        className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 mt-5"
-                    >
-                        Clear all
-                    </a>
+                    <button onClick={clearCart} className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 mt-5">Clear all</button>
                 </div>
                 <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                     <p>

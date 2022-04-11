@@ -7,28 +7,30 @@ import { useRef } from "react";
 import Cart from "./Cart.js"
 
 
-const Navbar = (cart ,addToCart,deleteFromCart,clearCart,subTotal) => {
+const Navbar = (cart, addToCart, deleteFromCart, clearCart, subTotal) => {
 
-  console.log(cart ,addToCart,deleteFromCart,clearCart,subTotal);
-const toggleCart =()=>{
-  // console.log("fff");
-  if (ref.current.classList.contains('translate-x-full')){
-    ref.current.classList.remove('translate-x-full')
-    ref.current.classList.add('translate-x-0')
-    
-  }
- else if (!ref.current.classList.contains('translate-x-full')){
-    ref.current.classList.add('translate-x-full')
-    ref.current.classList.remove('translate-x-0')
-  }
-} 
+  // console.log(cart, addToCart, deleteFromCart, clearCart, subTotal);
 
-const ref = useRef()
+  //toggle the cart
+  const toggleCart = () => {
+    // console.log("fff");
+    if (ref.current.classList.contains('translate-x-full')) {
+      ref.current.classList.remove('translate-x-full')
+      ref.current.classList.add('translate-x-0')
+
+    }
+    else if (!ref.current.classList.contains('translate-x-full')) {
+      ref.current.classList.add('translate-x-full')
+      ref.current.classList.remove('translate-x-0')
+    }
+  }
+
+  const ref = useRef()
 
 
   return (
     <div className="bg-white sticky z-10 top-0">
-      <header  className="text-gray-600  shadow-md  body-font">
+      <header className="text-gray-600  shadow-md  body-font">
         <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
           <Link href='/'><a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
             <Image src="/logo.png" height={35} width={35} />
@@ -40,7 +42,7 @@ const ref = useRef()
             <Link href='/sticker'><a className="mr-5 hover:text-gray-900">Stickers</a></Link>
             <Link href='/mugs'><a className="mr-5 hover:text-gray-900">Mugs</a></Link>
           </nav>
-          <Link href="/login"><MdOutlineAccountCircle className="text-3xl mx-3 hover:text-indigo-700 cursor-pointer"/></Link>
+          <Link href="/login"><MdOutlineAccountCircle className="text-3xl mx-3 hover:text-indigo-700 cursor-pointer" /></Link>
           <span onClick={toggleCart} className="cursor-pointer hover:text-indigo-700 " ><AiOutlineShoppingCart className="text-3xl" /></span>
           <svg
             fill="none"
@@ -56,13 +58,13 @@ const ref = useRef()
         </div>
       </header>
 
-    {/* Sidebar */}
-    <div ref={ref} className="sidebar rounded-bl-md z-50 transition-transform delay-500  duration-300 ease-out bg-slate-100 absolute top-0 right-0 p-10 translate-x-full transform ">
-      <h2 className="font-bold text-xl">Shoping Cart
-      <span onClick={toggleCart} className="absolute cursor-pointer top-8 right-8"><AiOutlinePoweroff className="hover:text-red-500"/></span></h2>
-                
-<Cart/>
-    </div>
+      {/* Sidebar */}
+      <div ref={ref} className="sidebar rounded-bl-md z-50 transition-transform delay-500  duration-300 ease-out bg-slate-100 absolute top-0 right-0 p-10 translate-x-full transform ">
+        <h2 className="font-bold text-xl">Shoping Cart
+          <span onClick={toggleCart} className="absolute cursor-pointer top-8 right-8"><AiOutlinePoweroff className="hover:text-red-500" /></span></h2>
+
+        <Cart cart={cart} addToCart={addToCart} deleteFromCart={deleteFromCart} clearCart={clearCart} subTotal={subTotal} />
+      </div>
 
 
     </div>

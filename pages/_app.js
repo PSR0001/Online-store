@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }) {
   const [subTotal, setSubTotal] = useState(0)
 
   useEffect(() => {
-    //under try catch
+    //under try catchconsole
 
     try {
       // console.log("Hey giys")
@@ -59,7 +59,7 @@ function MyApp({ Component, pageProps }) {
   const clearCart = () => {
     setCart({});
     saveToLocalStorage({})
-
+    console.log("YOur Cart Has been cleared");
     //Note: saveToLocalStorage(cart)---> this is wrong because in React when we run usestate set state may some time to execute !important
   }
 
