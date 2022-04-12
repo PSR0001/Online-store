@@ -12,5 +12,8 @@ const productSchema = new mongoose.Schema({
   availableQty:{type:Number,required:true}
 
 },{timestamps:true});
+mongoose.models = {}
+// export default mongoose.model("product",productSchema)
+let UserModel = mongoose.model("product",productSchema);
 
-export default mongoose.model("product",productSchema)
+module.exports = UserModel;
