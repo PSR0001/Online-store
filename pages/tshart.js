@@ -1,5 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
+import Product from '../'
+
+
 const Tsharts = () => {
   return (
     <div className='bg-slate-100'>
@@ -42,4 +45,12 @@ const Tsharts = () => {
   )
 }
 
+
+//use getserversideprops to fetch from DB
+export async function getServerSideProps(context) {
+
+  return {
+    props: {}, 
+  }
+}
 export default Tsharts
