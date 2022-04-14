@@ -11,6 +11,8 @@ const Slug = ({addToCart}) => {
   const router = useRouter()
   const { slug } = router.query;
 
+  // console.log(slug);
+
 const [pin,setpin] = useState()
 const [service,setservice]=useState()
  //clicking the check button run this function
