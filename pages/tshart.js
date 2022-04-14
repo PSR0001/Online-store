@@ -20,8 +20,8 @@ const Tsharts = ({Products}) => {
                 </a>
                 <div className="mt-4">
                   <h3 className="text-gray-500  tracking-widest title-font mb-1">{product.category}</h3>
-                  <h2 className="text-black title-font text-lg font-medium">The Catalyzer</h2>
-                  <p className="mt-1">₹ {product.prise}</p>
+                  <div><h2 className="text-black title-font text-lg font-medium">The Catalyzer </h2> <span>{product.size}</span></div>
+                  <p className="mt-1 text-gray-700">₹ {product.prise}</p>
                 </div>
               </div>
             ))}
