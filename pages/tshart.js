@@ -1,9 +1,12 @@
 import React from 'react'
 import Link from 'next/link'
-import Product from '../'
+import Product from '../models/Products'
+import mongoose from "mongoose";
 
 
-const Tsharts = () => {
+const Tsharts = ({Products}) => {
+  // console.log(Products);
+
   return (
     <div className='bg-slate-100'>
 
@@ -13,9 +16,10 @@ const Tsharts = () => {
           <div className="flex  flex-wrap -m-4">
 
             {/* No:1 */}
-            <div className=" bg-white lg:w-1/5 border-2 md:w-1/2 p-2 m-2  w-full">
+            {Products.map((product) => (
+             <div key={product._id} className=" bg-white lg:w-1/5 border-2 md:w-1/2 p-2 m-2  w-full">
               <a className="block relative h-72 rounded overflow-hidden">
-               <Link href='Product/howdy'><img alt="ecommerce" className="object-cover object-center w-full h-full block" src="https://rukminim2.flixcart.com/image/880/1056/kfoapow0-0/t-shirt/u/n/1/m-6555072-hrx-by-hrithik-roshan-original-imafw2ky4ewmgevh.jpeg?q=50" /></Link>
+                <Link href='Product/howdy'><img alt="ecommerce" className="object-cover object-center w-full h-full block" src={product.img} /></Link>
               </a>
               <div className="mt-4">
                 <h3 className="text-gray-500  tracking-widest title-font mb-1">T-shart</h3>
@@ -23,20 +27,7 @@ const Tsharts = () => {
                 <p className="mt-1">₹ 500.00</p>
               </div>
             </div>
-
-            {/* No:2 */}
-            <div className="lg:w-1/5 border-2 bg-white md:w-1/2 p-2 m-2 w-full">
-              <a className="block relative h-72 rounded overflow-hidden">
-                <img alt="ecommerce" className="object-cover object-center w-full h-full block" src="https://rukminim2.flixcart.com/image/880/1056/kfoapow0-0/t-shirt/u/n/1/m-6555072-hrx-by-hrithik-roshan-original-imafw2ky4ewmgevh.jpeg?q=50" />
-              </a>
-              <div className="mt-4">
-                <h3 className="text-gray-500  tracking-widest title-font mb-1">T-shart</h3>
-                <h2 className="text-black title-font text-lg font-medium">The Catalyzer</h2>
-                <p className="mt-1">₹ 500.00</p>
-              </div>
-            </div>
-          {/* No:3 */}
-
+            ))}
 
           </div>
         </div>
@@ -48,9 +39,15 @@ const Tsharts = () => {
 
 //use getserversideprops to fetch from DB
 export async function getServerSideProps(context) {
+  if (!mongoose.connections[0].readyState) {
+
+    await mongoose.connect(process.env.MONGO_URL)
+    console.log("fggfjfjhg")
+  }
+  let Products = await Product.find()
 
   return {
-    props: {}, 
+    props: {Products:JSON.parse(JSON.stringify(Products))},
   }
 }
 export default Tsharts
