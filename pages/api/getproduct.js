@@ -4,11 +4,14 @@ import connectDB from '../../middleware/mongoose'
 
 const handler = async(req, res)=> {
     let Products = await Product.find()
-    let tshirt={}
+    let tshart={}
     for (let item of Products){
-      if (item.userId in tshirt) {
+      if (item.userId in tshart) {
         if(!tshart[item.userId].color.includes[item.color] && item.availableQty >0){
-
+          tshart[item.userId].color.push(item.color)
+        }
+        if(!tshart[item.userId].size.includes[item.size] && item.availableQty >0){
+          tshart[item.userId].size.push(item.size)
         }
       }
       else{
@@ -20,9 +23,9 @@ const handler = async(req, res)=> {
       }
 
 
-    //rest 
+    //rest  
     }
-    res.status(200).json({ Products })
+    res.status(200).json({ tshart })
   }
 
 
