@@ -63,6 +63,7 @@ export async function getServerSideProps(context) {
       // props: {tshart },
     }
   }
+    // add more
 
 }
 export default Tsharts
