@@ -62,7 +62,7 @@ export async function getServerSideProps(context) {
       props: { Products: JSON.parse(JSON.stringify(tshart)) },
       // props: {tshart },
     }
-  }
+  }     
     // add more
 
 }
