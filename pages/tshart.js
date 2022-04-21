@@ -13,15 +13,15 @@ const Tsharts = ({ Products }) => {
         <div className="container  px-5 py-24 lg:mx-40 mx-auto">
           <div className="flex  flex-wrap -m-4">
             {/* No:1 */}
-            {Object.keys(Products).map((product) => (
-             <div passhref={true} key={Products[product]._id} className=" bg-white lg:w-1/5 border-2 md:w-1/2 p-2 m-2  w-full">
+            {Object.keys(Products).map((item) => (
+              <div passhref={true} key={Products[item]._id} className=" bg-white lg:w-1/5 border-2 md:w-1/2 p-2 m-2  w-full">
                 <a className="block relative h-72 rounded overflow-hidden">
-                  <Link href={`Product/${Products[product].slug}`}><img alt="ecommerce" className="object-cover object-center w-full h-full block" src={Products[product].img} /></Link>
+                  <Link href={`Product/${Products[item].slug}`}><img alt="ecommerce" className="object-cover object-center w-full h-full block" src={Products[item].img} /></Link>
                 </a>
                 <div className="mt-4">
-                  <h3 className="text-gray-500  tracking-widest title-font mb-1">{Products[product].category}</h3>
-                  <div><h2 className="text-black title-font text-lg font-medium">The Catalyzer </h2> <span>{Products[product].size}</span></div>
-                  <p className="mt-1 text-gray-700">₹ {Products[product].prise}</p>
+                  <h3 className="text-gray-500  tracking-widest title-font mb-1">{Products[item].category}</h3>
+                  <div><h2 className="text-black title-font text-lg font-medium">The Catalyzer </h2> <span>{Products[item].size}</span></div>
+                  <p className="mt-1 text-gray-700">₹ {Products[item].prise}</p>
                 </div>
               </div>
             ))}
@@ -59,11 +59,12 @@ export async function getServerSideProps(context) {
       }
     }
     return {
-      props: { Products: JSON.parse(JSON.stringify(tshart)) },
-      // props: {tshart },
+      // props: { Products: JSON.parse(JSON.stringify(tshart)) }
+      props: { tshart }
+    
     }
-  }     
-    // add more
+  }
+  // add more
 
 }
 export default Tsharts
