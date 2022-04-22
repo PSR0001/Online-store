@@ -12,9 +12,11 @@ const Tsharts = ({ Products }) => {
       <section className="text-gray-400  body-font">
         <div className="container  px-5 py-24 lg:mx-40 mx-auto">
           <div className="flex  flex-wrap -m-4">
-            {/* No:1 */}
-            {Object.keys(Products).map((item) => (
-              <div passhref={true} key={Products[item]._id} className=" bg-white lg:w-1/5 border-2 md:w-1/2 p-2 m-2  w-full">
+         
+            {Object.keys(Products).map((item) => {
+              
+    // console.log("object",item);
+              return<div passHref={true} key={Products[item]._id} className=" bg-white lg:w-1/5 border-2 md:w-1/2 p-2 m-2  w-full">
                 <a className="block relative h-72 rounded overflow-hidden">
                   <Link href={`Product/${Products[item].slug}`}><img alt="ecommerce" className="object-cover object-center w-full h-full block" src={Products[item].img} /></Link>
                 </a>
@@ -24,8 +26,8 @@ const Tsharts = ({ Products }) => {
                   <p className="mt-1 text-gray-700">₹ {Products[item].prise}</p>
                 </div>
               </div>
-            ))}
-
+            })
+            }
           </div>
         </div>
       </section>
@@ -35,13 +37,16 @@ const Tsharts = ({ Products }) => {
 
 //use getserversideprops to fetch from DB
 export async function getServerSideProps(context) {
+  // console.log("hi guys");
+
   if (!mongoose.connections[0].readyState) {
     await mongoose.connect(process.env.MONGO_URL)
     // console.log("fggfjfjhg")
   }
-  let Products = await Product.find({ category: 'T-shart' })
-
+  let Products = await Product.find({category: 'T-Shart'})
+  
   let tshart = {}
+  // console.log("fggfjfjhg",Products)
   for (let item of Products) {
     if (item.userId in tshart) {
       if (!tshart[item.userId].color.includes[item.color] && item.availableQty > 0) {
@@ -58,9 +63,10 @@ export async function getServerSideProps(context) {
         tshart[item.userId].size = [item.size]
       }
     }
+    // console.log(tshart);
     return {
-      // props: { Products: JSON.parse(JSON.stringify(tshart)) }
-      props: { tshart }
+      props: { Products: JSON.parse(JSON.stringify(tshart)) }
+      // props: { tshart }
     
     }
   }
