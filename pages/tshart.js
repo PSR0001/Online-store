@@ -15,18 +15,28 @@ const Tsharts = ({ Products }) => {
          
             {Object.keys(Products).map((item) => {
               
-    // console.log("object",item);
-              return<div passHref={true} key={Products[item]._id} className=" bg-white lg:w-1/5 border-2 md:w-1/2 p-2 m-2  w-full">
+              // console.log("object",item);
+              return <div passHref={true} key={Products[item]._id} className=" bg-white lg:w-1/5 border-2 md:w-1/2 p-2 m-2  w-full">
                 <a className="block relative h-72 rounded overflow-hidden">
                   <Link href={`Product/${Products[item].slug}`}><img alt="ecommerce" className="object-cover object-center w-full h-full block" src={Products[item].img} /></Link>
                 </a>
                 <div className="mt-4">
                   <h3 className="text-gray-500  tracking-widest title-font mb-1">{Products[item].category}</h3>
-                  <div><h2 className="text-black title-font text-lg font-medium">The Catalyzer </h2> <span>{Products[item].size}</span></div>
-                  <p className="mt-1 text-gray-700">₹ {Products[item].prise}</p>
+                  <div><h2 className="text-black title-font text-lg font-medium">The Catalyzer</h2> <span>
+                     {Products[item].size.includes('S') && <span className='border border-sm mx-2 p-1'>S</span>}
+                     {Products[item].size.includes('M') && <span className='border border-sm mx-2 p-1'>M</span>}
+                     {Products[item].size.includes('L') && <span className='border border-sm mx-2 p-1'>L</span>}
+                     {Products[item].size.includes('XL') && <span className='border border-sm mx-2 p-1'>XL</span>}
+                     {Products[item].size.includes('XXL') && <span className='border border-sm mx-2 p-1'>XXL</span>}
+                     
+                     </span></div>
+                  <p className="mt-1">
+                    
+                    
+                  </p>
                 </div>
               </div>
-            })
+               })
             }
           </div>
         </div>
@@ -46,7 +56,7 @@ export async function getServerSideProps(context) {
   let Products = await Product.find({category: 'T-Shart'})
   
   let tshart = {}
-  // console.log("fggfjfjhg",Products)
+  // console.log(Products)
   for (let item of Products) {
     if (item.userId in tshart) {
       if (!tshart[item.userId].color.includes[item.color] && item.availableQty > 0) {
@@ -64,14 +74,12 @@ export async function getServerSideProps(context) {
       }
     }
     // console.log(tshart);
+
+  }
     return {
       props: { Products: JSON.parse(JSON.stringify(tshart)) }
-      // props: { tshart }
-    
     }
-  }
-  // add more
-
+  
 }
 export default Tsharts
 
