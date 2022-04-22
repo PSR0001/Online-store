@@ -151,4 +151,28 @@ const collectPins =(e)=>{
   )
 }
 
+export async function getServerSideProps(context) {
+  // console.log("hi guys");
+
+  if (!mongoose.connections[0].readyState) {
+    await mongoose.connect(process.env.MONGO_URL)
+    // console.log("fggfjfjhg")
+  }
+  let product = await Product.findOne({slug : context.query.slug})
+  let variants = await Product.find({title : product.userId})
+ 
+  let colorSizeSlug ={}
+  for (let item of variants) {
+
+      
+    
+  }
+
+
+
+    return {
+      props: { Products: JSON.parse(JSON.stringify(tshart)) }
+    }
+  
+}
 export default Slug
