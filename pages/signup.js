@@ -4,30 +4,56 @@ import Link from 'next/link'
 import { useState } from 'react'
 const Signup = () => {
 
-const [name, setName] = useState()
-const [email, setEmail] = useState()
-const [password, setPassword] = useState()
-const [cpassword, setCpassword] = useState()
+  const [name, setName] = useState()
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+  const [cpassword, setCpassword] = useState()
 
-const fillForm=(e)=>{
-  //for debugging 
+  const fillForm = (e) => {
+    //for debugging 
     // console.log("hey U");
     // console.log(e.target.value);
-    setName(e.target.value)
+    if(e.target.name == "name"){
+      setName(e.target.value)
+    }
+    else if(e.target.name == "email"){
+      setEmail(e.target.value)
+    }
+    else if(e.target.name == "password"){
+      setPassword(e.target.value)
+    }
+    else if(e.target.name == "cpassword"){
+      setCpassword(e.target.value)
+    }
 
 
-}
-const submitSingup = async (e)=>{
-  // console.log("hi guys");
-  e.preventDefault()
 
-  const formBody ={}
-  // fetch("")
-  setName("")
-  setEmail('')
-  setPassword('')
-  setCpassword('')
-}
+  }
+  const submitSingup = async (e) => {
+    // console.log("hi guys");
+    e.preventDefault()
+
+    const data = {
+      name:name,email:email,password:password,cpassword:cpassword
+    }
+    // fetch("")
+    let response = await fetch('http://localhost:3000/api/signup', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+
+    console.log(response);
+    let res = await response.json()
+    console.log(res);
+
+    setName('')
+    setEmail('')
+    setPassword('')
+    setCpassword('')
+  }
 
   return (
     <div className='flex flex-col bg-slate-100'>
@@ -42,10 +68,10 @@ const submitSingup = async (e)=>{
             </div>
 
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Create Your Account</h2>
-            
+
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
-            <input  type="hidden" name="remember" defaultValue="true" />
+          <form onSubmit={submitSingup} className="mt-8 space-y-6" method="POST">
+            <input type="hidden" name="remember" defaultValue="true" />
             <div className="rounded-md shadow-sm -space-y-px">
               <div >
                 <label htmlFor="name" className="sr-only">
@@ -59,6 +85,7 @@ const submitSingup = async (e)=>{
                   className=" mt-2 mb-2 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Full Name"
                   onChange={fillForm}
+                  value={name}
                 />
               </div>
               <div className='mt-2 mb-2'>
@@ -73,6 +100,8 @@ const submitSingup = async (e)=>{
                   required
                   className="mt-2 mb-2 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Email address"
+                  onChange={fillForm}
+                  value={email}
                 />
               </div>
               <div>
@@ -87,6 +116,8 @@ const submitSingup = async (e)=>{
                   required
                   className="mt-2 mb-2 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Password"
+                  onChange={fillForm}
+                  value={password}
                 />
               </div>
               <div >
@@ -101,6 +132,8 @@ const submitSingup = async (e)=>{
                   required
                   className="mt-2 mb-2 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Confirm Password"
+                  onChange={fillForm}
+                  value={cpassword}
                 />
               </div>
             </div>
@@ -118,40 +151,40 @@ const submitSingup = async (e)=>{
                 </label>
               </div>
 
-              
+
             </div>
 
             <div>
-              <button onClick={submitSingup}
+              <button 
                 type="submit"
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                 
+
                 </span>
                 Sign in
               </button>
             </div>
           </form>
-          
+
           <div className="text-center text-sm text-grey-dark mt-4">
-              By signing up, you agree to the
-              <a className="no-underline border-b border-grey-dark text-grey-dark" >
-                Terms of Service
-              </a> and
-              <a className="no-underline border-b border-grey-dark text-grey-dark" >
-                Privacy Policy
-              </a>
-            </div>
+            By signing up, you agree to the
+            <a className="no-underline border-b border-grey-dark text-grey-dark" >
+              Terms of Service
+            </a> and
+            <a className="no-underline border-b border-grey-dark text-grey-dark" >
+              Privacy Policy
+            </a>
+          </div>
         </div>
 
       </div>
-        <div className="text-grey-dark mt-5 mb-5 text-center ">
-            Already have an account?
-            <Link href={'/login'}><a className="no-underline text-indigo-700">
-              Log in
-            </a></Link>.
-          </div>
+      <div className="text-grey-dark mt-5 mb-5 text-center ">
+        Already have an account?
+        <Link href={'/login'}><a className="no-underline text-indigo-700">
+          Log in
+        </a></Link>.
+      </div>
 
 
 
