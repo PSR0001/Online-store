@@ -2,6 +2,8 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Signup = () => {
 
   const [name, setName] = useState()
@@ -53,10 +55,22 @@ const Signup = () => {
     setEmail('')
     setPassword('')
     setCpassword('')
+
+    //add a toast
+    toast.success('🚀 Your account has been created successfully !', {
+      position: "bottom-left",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    
+      });
   }
 
   return (
     <div className='flex flex-col bg-slate-100'>
+      <ToastContainer/>
       <div className=" flex items-center  justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8 bg-white p-5 rounded-md shadow-md">
           <div className='text-center'>
