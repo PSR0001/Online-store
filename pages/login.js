@@ -4,10 +4,15 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from 'next/router';
 
 
 
 const Login = () => {
+
+//userouter use
+const router=useRouter()
+
 
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
@@ -47,7 +52,7 @@ const Login = () => {
     if(res.success){
     //add a toast
     toast.success('🚀 You are Logged in !', {
-      position: "bottom-left",
+      position: "top-left",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -55,10 +60,15 @@ const Login = () => {
       draggable: true,
     
       });
+
+        //set tiem out for router.push
+    setTimeout(() => {
+      router.push("/")
+    }, 1000);
     }
     else{
       toast.error(`🚀 ${res.error}`, {
-        position: "bottom-left",
+        position: "top-left",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -66,6 +76,9 @@ const Login = () => {
         draggable: true,  
       });
     }
+
+
+  
     }
 
 
