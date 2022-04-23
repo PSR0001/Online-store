@@ -1,10 +1,78 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+
 const Login = () => {
+
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+
+  const fillForm = (e) => {
+
+     if(e.target.name == "email"){
+      setEmail(e.target.value)
+    }
+    else if(e.target.name == "password"){
+      setPassword(e.target.value)
+    }
+  }
+  const submitSingup = async (e) => {
+    // console.log("hi guys");
+    e.preventDefault()
+
+    const data = {
+      email:email,password:password,
+    }
+    // fetch("")
+    let response = await fetch('http://localhost:3000/api/login', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+
+    // console.log(response);
+    let res = await response.json()
+    console.log(res);
+
+    setEmail('')
+    setPassword('')
+
+    if(res.success){
+    //add a toast
+    toast.success('🚀 You are Logged in !', {
+      position: "bottom-left",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    
+      });
+    }
+    else{
+      toast.error(`🚀 ${res.error}`, {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,  
+      });
+    }
+    }
+
+
   return (
     <div >
       <div className=" flex items-center bg-slate-100 justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <ToastContainer/>
         <div className="max-w-md w-full space-y-8 bg-white p-5 rounded-md shadow-md">
           <div className='text-center'>
 
@@ -18,7 +86,7 @@ const Login = () => {
             Or{' '}
             <Link href='/signup'><a className="font-medium text-indigo-600 hover:text-indigo-500 text-center">Sign Up</a></Link>
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
+          <form  onSubmit={submitSingup} className="mt-8 space-y-6" action="#" method="POST">
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
@@ -33,6 +101,8 @@ const Login = () => {
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Email address"
+                  onChange={fillForm}
+                  value={email}
                 />
               </div>
               <div>
@@ -47,6 +117,8 @@ const Login = () => {
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Password"
+                  onChange={fillForm}
+                  value={password}
                 />
               </div>
             </div>
