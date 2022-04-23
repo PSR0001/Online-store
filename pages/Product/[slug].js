@@ -3,13 +3,13 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import Link from 'next/link'
-import Product from '../models/Products'
+import Product from '../../models/Products'
 import mongoose from "mongoose";
 
 
-const Slug = ({addToCart}) => {
+const Slug = ({addToCart ,product,variants}) => {
 
-
+console.log(product,variants);
 
   const router = useRouter()
   const { slug } = router.query;
@@ -167,7 +167,7 @@ export async function getServerSideProps(context) {
   let colorSizeSlug ={} //{red:{xl:{slug: "T-shirt-page"}}}
 
   for (let item of variants) {
-    if(Object.keys[colorSizeSlug].includes(item.color)){
+    if(Object.keys(colorSizeSlug).includes(item.color)){
         colorSizeSlug[item.color][item.size] = {slug: item.slug }
     }
     else{
@@ -180,7 +180,7 @@ export async function getServerSideProps(context) {
 
 
     return {
-      props: { Products: JSON.parse(JSON.stringify(tshart)) }
+      props: { Product: JSON.parse(JSON.stringify(product)),variants: JSON.parse(JSON.stringify(colorSizeSlug)) }
     }
   
 }

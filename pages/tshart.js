@@ -16,7 +16,7 @@ const Tsharts = ({ Products }) => {
             {Object.keys(Products).map((item) => {
               
               // console.log("object",item);
-              return <div passHref={true} key={Products[item]._id} className=" bg-white lg:w-1/5 border-2 md:w-1/2 p-2 m-2  w-full">
+              return <div key={Products[item]._id} className=" bg-white lg:w-1/5 border-2 md:w-1/2 p-2 m-2  w-full">
                 <a className="block relative h-72 rounded overflow-hidden">
                   <Link href={`Product/${Products[item].slug}`}><img alt="ecommerce" className="object-cover object-center w-full h-full block" src={Products[item].img} /></Link>
                 </a>
