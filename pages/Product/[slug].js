@@ -6,6 +6,8 @@ import { useState } from 'react'
 import Product from '../../models/Products'
 import mongoose from "mongoose";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Slug = ({addToCart ,product,variants}) => {
 
@@ -31,9 +33,27 @@ const checkServiceable = async()=>{
   if(pinCodes.includes(parseInt(pin))){
     setservice(true)
     // console.log('first true');
+    toast.success('Yeh! This Pincode is serviciable.', {
+      position: "bottom-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
   }else{
     setservice(false)
     // console.log("second false");
+    toast.error('Sorry! we do not deliver this Pincode yet.', {
+      position: "bottom-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
   }
   console.log(service,parseInt(pin));
 }
@@ -48,6 +68,7 @@ const collectPins =(e)=>{
   return (
     <div>
       <section className="text-gray-600 body-font overflow-hidden">
+      <ToastContainer />
         <div className="container px-5 py-16 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <img alt="ecommerce" className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src={product.img} width={400} height={400} />
@@ -141,7 +162,7 @@ const collectPins =(e)=>{
               { (!service && service !=null) && <div className='text-red-500 text-sm mt-5'>
                 Sorry! we do no deliver this Pincode yet.
               </div>}
-              { (service && service !=null) && <div className='text-green-500 text-sm mt-5'>
+              { (service && service !=null) && <div className='text-green-600 text-sm mt-5'>
                 Yeh! This Pincode is serviciable.
               </div>}
               
