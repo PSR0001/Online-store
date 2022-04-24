@@ -13,6 +13,9 @@ function MyApp({ Component, pageProps }) {
   const [cart, setCart] = useState({})
   const [subTotal, setSubTotal] = useState(0)
   const [progress, setProgress] = useState(0)
+  const [user, setUser] = useState({value:0})
+  const [key, setKey] = useState(0)
+
   const router = useRouter()
   useEffect(() => {
 
@@ -38,6 +41,11 @@ function MyApp({ Component, pageProps }) {
       localStorage.clear()
     }
 
+    const token = localStorage.getItem('token')
+    if (token) {
+      setUser({value:token})
+      setKey(Math.random())
+    }
 
   }, [])
 
@@ -90,6 +98,12 @@ function MyApp({ Component, pageProps }) {
     saveToLocalStorage(newCart)
   }
 
+
+
+
+
+
+
     // console.log(cart, addToCart, deleteFromCart, clearCart, subTotal)
   return <>
       <LoadingBar
@@ -99,7 +113,7 @@ function MyApp({ Component, pageProps }) {
         waitingTime={500}
         onLoaderFinished={() => setProgress(0)}
       />
-    <Navbar fuck={"fuck u"} cart={cart} addToCart={addToCart} deleteFromCart={deleteFromCart} clearCart={clearCart} subTotal={subTotal} />
+    <Navbar key={key} user={user}  cart={cart} addToCart={addToCart} deleteFromCart={deleteFromCart} clearCart={clearCart} subTotal={subTotal} />
   
     
     <Component cart={cart} addToCart={addToCart} deleteFromCart={deleteFromCart} clearCart={clearCart} subTotal={subTotal} {...pageProps} />

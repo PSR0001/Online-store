@@ -7,7 +7,7 @@ import { useRef } from "react";
 import Cart from "./Cart.js"
 
 
-const Navbar = ({fuck,cart, addToCart, deleteFromCart, clearCart, subTotal}) => {
+const Navbar = ({key,user,cart, addToCart, deleteFromCart, clearCart, subTotal}) => {
 
   // console.log("hey",cart, addToCart, deleteFromCart, clearCart, subTotal,"hi");
 
@@ -43,7 +43,16 @@ const Navbar = ({fuck,cart, addToCart, deleteFromCart, clearCart, subTotal}) => 
             <Link href={'/mugs'}><a className="mr-5 hover:text-gray-900">Mugs</a></Link>
             <Link href={'/order'}><a className="mr-5 border-2 px-2 rounded-sm bg-slate-100 hover:text-gray-900">Order</a></Link>
           </nav>
-          <Link href={"/login"}><MdOutlineAccountCircle className="text-3xl mx-3 hover:text-indigo-700 cursor-pointer" /></Link>
+
+          {user.value && <MdOutlineAccountCircle className="text-3xl mx-3 hover:text-indigo-700 cursor-pointer" />}
+
+         {!user.value && <Link href={"/login"}><a>
+            <button  className="lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">login</button>
+          </a></Link>
+         
+          }
+
+
           <span onClick={toggleCart} className="cursor-pointer hover:text-indigo-700 " ><AiOutlineShoppingCart className="text-3xl" /></span>
           <svg
             fill="none"
@@ -64,7 +73,7 @@ const Navbar = ({fuck,cart, addToCart, deleteFromCart, clearCart, subTotal}) => 
         <h2 className="font-bold text-xl">Shoping Cart
           <span onClick={toggleCart} className="absolute cursor-pointer top-8 right-8"><AiOutlinePoweroff className="hover:text-red-500" /></span></h2>
 
-        <Cart fuck={fuck} cart={cart} addToCart={addToCart} deleteFromCart={deleteFromCart} clearCart={clearCart} subTotal={subTotal} />
+        <Cart  cart={cart} addToCart={addToCart} deleteFromCart={deleteFromCart} clearCart={clearCart} subTotal={subTotal} />
       </div>
 
     {/* <button onClick={clearCart}>hi guys</button> */}
