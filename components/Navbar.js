@@ -41,6 +41,7 @@ const Navbar = ({fuck,cart, addToCart, deleteFromCart, clearCart, subTotal}) => 
             <Link href={'/hoodies'}><a className="mr-5 hover:text-gray-900">Hoodies</a></Link>
             <Link href={'/sticker'}><a className="mr-5 hover:text-gray-900">Stickers</a></Link>
             <Link href={'/mugs'}><a className="mr-5 hover:text-gray-900">Mugs</a></Link>
+            <Link href={'/order'}><a className="mr-5 border-2 px-2 rounded-sm bg-slate-100 hover:text-gray-900">Order</a></Link>
           </nav>
           <Link href={"/login"}><MdOutlineAccountCircle className="text-3xl mx-3 hover:text-indigo-700 cursor-pointer" /></Link>
           <span onClick={toggleCart} className="cursor-pointer hover:text-indigo-700 " ><AiOutlineShoppingCart className="text-3xl" /></span>
