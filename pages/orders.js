@@ -1,13 +1,16 @@
 import React from 'react'
+import Order from '../models/Order'
+import mongoose from "mongoose";
 
 const Orders = () => {
-    return ( 
-        <div className='container mx-12'>
+    return (
+    <div>
+        <div className='container mx-auto'>
             <div className="flex flex-col">
                 <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
                         <div className="overflow-hidden">
-            <h2 className='font-bold text-xl p-8'>Orders :</h2>
+                            <h2 className='font-bold text-xl p-8'>Orders :</h2>
                             <table className="min-w-full">
                                 <thead className="border-b bg-gray-800">
                                     <tr>
@@ -23,7 +26,7 @@ const Orders = () => {
                                         <th scope="col" className="text-sm font-medium text-white px-6 py-4 text-left">
                                             Handle
                                         </th>
-                                </tr>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     <tr className="border-b">
@@ -69,7 +72,27 @@ const Orders = () => {
                 </div>
             </div>
         </div>
+        </div>
     )
+}
+
+//use getserversideprops to fetch from DB
+export async function getServerSideProps(context) {
+    // console.log("hi guys");
+
+    if (!mongoose.connections[0].readyState) {
+        await mongoose.connect(process.env.MONGO_URL)
+    }
+
+    let Orders = await Order.find()
+
+
+
+
+    return {
+        props: { Orders: Orders }
+    }
+
 }
 
 export default Orders

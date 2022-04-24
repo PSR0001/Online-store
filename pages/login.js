@@ -62,10 +62,14 @@ const Login = () => {
 
       });
 
+localStorage.setItem('token',res.token)
+
+
       //set tiem out for router.push
       setTimeout(() => {
         router.push("/")
       }, 1000);
+
 
     }
     else {
