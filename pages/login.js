@@ -10,8 +10,8 @@ import { useRouter } from 'next/router';
 
 const Login = () => {
 
-//userouter use
-const router=useRouter()
+  //userouter use
+  const router = useRouter()
 
 
   const [email, setEmail] = useState()
@@ -19,10 +19,10 @@ const router=useRouter()
 
   const fillForm = (e) => {
 
-     if(e.target.name == "email"){
+    if (e.target.name == "email") {
       setEmail(e.target.value)
     }
-    else if(e.target.name == "password"){
+    else if (e.target.name == "password") {
       setPassword(e.target.value)
     }
   }
@@ -31,7 +31,7 @@ const router=useRouter()
     e.preventDefault()
 
     const data = {
-      email:email,password:password,
+      email: email, password: password,
     }
     // fetch("")
     let response = await fetch('http://localhost:3000/api/login', {
@@ -49,43 +49,46 @@ const router=useRouter()
     setEmail('')
     setPassword('')
 
-    if(res.success){
-    //add a toast
-    toast.success('🚀 You are Logged in !', {
-      position: "top-left",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-    
-      });
 
-        //set tiem out for router.push
-    setTimeout(() => {
-      router.push("/")
-    }, 1000);
-    }
-    else{
-      toast.error(`🚀 ${res.error}`, {
+    if (res.success) {
+      //add a toast
+      toast.success('🚀 You are Logged in !', {
         position: "top-left",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
-        draggable: true,  
+        draggable: true,
+
+      });
+
+      //set tiem out for router.push
+      setTimeout(() => {
+        router.push("/")
+      }, 1000);
+
+    }
+    else {
+      //  console.log(res.success); 
+      toast.error(`🚀 invailed credentials`, {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
       });
     }
 
 
-  
-    }
+
+  }
 
 
   return (
     <div >
       <div className=" flex items-center bg-slate-100 justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <ToastContainer/>
+        <ToastContainer />
         <div className="max-w-md w-full space-y-8 bg-white p-5 rounded-md shadow-md">
           <div className='text-center'>
 
@@ -99,7 +102,7 @@ const router=useRouter()
             Or{' '}
             <Link href='/signup'><a className="font-medium text-indigo-600 hover:text-indigo-500 text-center">Sign Up</a></Link>
           </div>
-          <form  onSubmit={submitSingup} className="mt-8 space-y-6" action="#" method="POST">
+          <form onSubmit={submitSingup} className="mt-8 space-y-6" action="#" method="POST">
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
@@ -160,7 +163,7 @@ const router=useRouter()
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                 
+
                 </span>
                 Sign in
               </button>
