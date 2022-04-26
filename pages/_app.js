@@ -47,7 +47,7 @@ function MyApp({ Component, pageProps }) {
       setKey(Math.random())
     }
 
-  }, [])
+  }, [router.query])
 
 
   //save the cart in local storage

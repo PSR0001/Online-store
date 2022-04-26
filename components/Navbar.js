@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineShoppingCart, AiOutlinePoweroff } from "react-icons/ai";
@@ -10,6 +10,12 @@ import Cart from "./Cart.js"
 const Navbar = ({key,user,cart, addToCart, deleteFromCart, clearCart, subTotal}) => {
 
   // console.log("hey",cart, addToCart, deleteFromCart, clearCart, subTotal,"hi");
+  const [dropdown, setDropdown] = useState(false)
+
+  const toggleDropdown=()=>{
+    // console.log("hi uysvhagvdcjhdgsafh");
+    setDropdown(!dropdown)
+  }
 
   //toggle the cart
   const toggleCart = () => {
@@ -44,10 +50,30 @@ const Navbar = ({key,user,cart, addToCart, deleteFromCart, clearCart, subTotal})
             <Link href={'/order'}><a className="mr-5 border-2 px-2 rounded-sm bg-slate-100 hover:text-gray-900">Order</a></Link>
           </nav>
 
-          {user.value && <MdOutlineAccountCircle className="text-3xl mx-3 hover:text-indigo-700 cursor-pointer" />}
+         <a>
+           {dropdown &&          
+        <div class="border-2 border-gray-200 px-2  rounded-lg absolute right-24 top-12 bg-white">
+          
+        <nav class="list-none m-3 text-sm py-1">
+          <li>
+            <a class="text-gray-400 hover:text-gray-800">My Account</a>
+          </li>
+          <li>
+            <a class="text-gray-400 hover:text-gray-800">Orders</a>
+          </li>
+          <li>
+            <a class="text-gray-400 hover:text-gray-800">Logout</a>
+          </li>
+          
+        </nav>
+        </div>
+}
+        {user.value && <MdOutlineAccountCircle onMouseOver={toggleDropdown} className="text-3xl mx-3 hover:text-indigo-700 cursor-pointer" /> 
+        }
+        </a>
 
          {!user.value && <Link href={"/login"}><a>
-            <button  className="lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">login</button>
+            <button  className="lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex text-white bg-indigo-600 border-0 py-1 px-2 mx-2 focus:outline-none hover:bg-indigo-600 rounded">login</button>
           </a></Link>
          
           }
