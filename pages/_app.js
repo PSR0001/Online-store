@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }) {
   const [subTotal, setSubTotal] = useState(0)
   const [progress, setProgress] = useState(0)
   const [user, setUser] = useState({value:0})
-  const [key, setKey] = useState(0)
+  const [key, setKey] = useState()
 
   const router = useRouter()
   useEffect(() => {
@@ -123,12 +123,13 @@ router.push('/')
         waitingTime={500}
         onLoaderFinished={() => setProgress(0)}
       />
-    <Navbar logout={logout} key={key} user={user}  cart={cart} addToCart={addToCart} deleteFromCart={deleteFromCart} clearCart={clearCart} subTotal={subTotal} />
+    {/* {key && <Navbar logout={logout} key={key} user={user}  cart={cart} addToCart={addToCart} deleteFromCart={deleteFromCart} clearCart={clearCart} subTotal={subTotal} />} */}
+     <Navbar logout={logout} key={key} user={user}  cart={cart} addToCart={addToCart} deleteFromCart={deleteFromCart} clearCart={clearCart} subTotal={subTotal} />
   
     
-    <Component cart={cart} addToCart={addToCart} deleteFromCart={deleteFromCart} clearCart={clearCart} subTotal={subTotal} {...pageProps} />
+    <Component  {...pageProps} />
     <Footer />
   </>
 }
-
+// cart={cart} addToCart={addToCart} deleteFromCart={deleteFromCart} clearCart={clearCart} subTotal={subTotal}
 export default MyApp

@@ -10,10 +10,10 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = () => {
 
-  const [name, setName] = useState()
-  const [email, setEmail] = useState()
-  const [password, setPassword] = useState()
-  const [cpassword, setCpassword] = useState()
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [cpassword, setCpassword] = useState('')
 
   const fillForm = (e) => {
     //for debugging 

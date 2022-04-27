@@ -43,11 +43,11 @@ const Navbar = ({logout,key,user,cart, addToCart, deleteFromCart, clearCart, sub
             <span className="ml-3 text-xl text-blue-900">Online Store</span>
           </a></Link>
           <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
-            <Link href={'/tshart'}><a className="mr-5 font-bold hover:text-gray-900">Tsharts</a></Link>
-            <Link href={'/hoodies'}><a className="mr-5 hover:text-gray-900">Hoodies</a></Link>
-            <Link href={'/sticker'}><a className="mr-5 hover:text-gray-900">Stickers</a></Link>
-            <Link href={'/mugs'}><a className="mr-5 hover:text-gray-900">Mugs</a></Link>
-            <Link href={'/order'}><a className="mr-5 border-2 px-2 rounded-sm bg-slate-100 hover:text-gray-900">Order</a></Link>
+            <Link href={'/tshart'} ><a className="mr-5 font-bold hover:text-gray-900">Tsharts</a></Link>
+            <Link href={'/hoodies'} ><a className="mr-5 hover:text-gray-900">Hoodies</a></Link>
+            <Link href={'/sticker'} ><a className="mr-5 hover:text-gray-900">Stickers</a></Link>
+            <Link href={'/mugs'} ><a className="mr-5 hover:text-gray-900">Mugs</a></Link>
+            <Link href={'/order'} ><a className="mr-5 border-2 px-2 rounded-sm bg-slate-100 hover:text-gray-900">Order</a></Link>
           </nav>
 
          <a>
@@ -55,14 +55,14 @@ const Navbar = ({logout,key,user,cart, addToCart, deleteFromCart, clearCart, sub
         <div onMouseOver={()=>{setDropdown(true)}} onMouseLeave={()=>{setDropdown(false)}} className="border-2 border-gray-200 px-2  rounded-lg absolute right-24 top-12 bg-white ">
           
         <nav className="list-none m-3 text-sm py-1 font-bold">
-          <li key={'myaccount'}>
+          <li>
            <Link href={'/myaccount'}  className="text-gray-400 hover:text-gray-800">My Account</Link>
           </li>
-          <li key={'orders'}>
+          <li key='orders'>
            <Link href={'/orders'} className="text-gray-400 hover:text-gray-800">Orders</Link>
           </li>
-          <li key={'logout'} onClick={logout}>
-           <a   className="text-gray-400 hover:text-gray-800">Logout</a>
+          <li key='logout' onClick={logout}>
+           <span  className="text-gray-400 hover:text-gray-800">Logout</span>
           </li>
         </nav>
         </div>
