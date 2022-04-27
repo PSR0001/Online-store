@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineShoppingCart, AiOutlinePoweroff } from "react-icons/ai";
@@ -7,7 +7,7 @@ import { useRef } from "react";
 import Cart from "./Cart.js"
 
 
-const Navbar = ({logout,user,cart, addToCart, deleteFromCart, clearCart, subTotal}) => {
+const Navbar = ({ logout, user, cart, addToCart, deleteFromCart, clearCart, subTotal }) => {
 
   const [dropdown, setDropdown] = useState(false)
 
@@ -42,51 +42,54 @@ const Navbar = ({logout,user,cart, addToCart, deleteFromCart, clearCart, subTota
             <Link href={'/hoodies'} ><a className="mr-5 hover:text-gray-900">Hoodies</a></Link>
             <Link href={'/sticker'} ><a className="mr-5 hover:text-gray-900">Stickers</a></Link>
             <Link href={'/mugs'} ><a className="mr-5 hover:text-gray-900">Mugs</a></Link>
-            <Link href={'/order'} ><a className="mr-5 border-2 px-2 rounded-sm bg-slate-100 hover:text-gray-900">Order</a></Link>
+            {/* <Link href={'/order'} ><a className="mr-5 border-2 px-2 rounded-sm bg-slate-100 hover:text-gray-900">Order</a></Link> */}
           </nav>
+          <div className="flex items-center mt-3 ">
+            <span>
+              {dropdown &&
+                <div onMouseOver={() => { setDropdown(true) }} onMouseLeave={() => { setDropdown(false) }} className="border-2 border-gray-200 px-2  rounded-lg absolute right-24 top-12 bg-white ">
 
-         <a>
-           {dropdown &&          
-        <div onMouseOver={()=>{setDropdown(true)}} onMouseLeave={()=>{setDropdown(false)}} className="border-2 border-gray-200 px-2  rounded-lg absolute right-24 top-12 bg-white ">
-          
-        <nav className="list-none m-3 text-sm py-1 font-bold">
-          <ul>
-          <li>
-           <Link href={'/myaccount'}  className="text-gray-400 hover:text-gray-800">My Account</Link>
-           </li>
-          <li >
-           <Link href={'/orders'} className="text-gray-400 hover:text-gray-800">Orders</Link>
-          </li>
-          <li  onClick={logout}>
-           <span  className="text-gray-400 hover:text-gray-800">Logout</span>
-          </li>
-          </ul>
-        </nav>
-        </div>
-}
-        {user.value && <MdOutlineAccountCircle onMouseOver={()=>{setDropdown(true)}} onMouseLeave={()=>{setDropdown(false)}} className="text-3xl mx-3 hover:text-indigo-700 cursor-pointer" /> 
-        }
-        </a>
-
-         {!user.value && <Link href={"/login"}><a>
-            <button  className="lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex text-white bg-indigo-600 border-0 py-1 px-2 mx-2 focus:outline-none hover:bg-indigo-600 rounded">login</button>
-          </a></Link>
-         
-          }
+                  <nav className="list-none m-3 text-sm py-1 font-bold">
+                    <ul>
+                      <li>
+                        <Link href={'/myaccount'} className="text-gray-400 hover:text-gray-800">My Account</Link>
+                      </li>
+                      <li >
+                        <Link href={'/orders'} className="text-gray-400 hover:text-gray-800">Orders</Link>
+                      </li>
+                      <li onClick={logout}>
+                        <span className="text-gray-400 hover:text-gray-800">Logout</span>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              }
 
 
-          <span onClick={toggleCart} className="cursor-pointer hover:text-indigo-700 " ><AiOutlineShoppingCart className="text-3xl" /></span>
-          <svg
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            className="w-4 h-4 ml-1"
-            viewBox="0 0 24 24"
-          >
-            <path d="M5 12h14M12 5l7 7-7 7"></path>
-          </svg>
+              {user.value && <MdOutlineAccountCircle onMouseOver={() => { setDropdown(true) }} onMouseLeave={() => { setDropdown(false) }} className="text-3xl mx-3 hover:text-indigo-700 cursor-pointer" />
+              }
+            </span>
+
+            {!user.value && <Link href={"/login"}><a>
+              <button className="lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex text-white bg-indigo-600 border-0 py-1 px-2 mx-2 focus:outline-none hover:bg-indigo-600 rounded">login</button>
+            </a></Link>
+
+            }
+
+
+            <span onClick={toggleCart} className="cursor-pointer hover:text-indigo-700 " ><AiOutlineShoppingCart className="text-3xl" /></span>
+            <svg
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              className="w-4 h-4 ml-1"
+              viewBox="0 0 24 24"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </div>
         </div>
       </header>
 
@@ -95,7 +98,7 @@ const Navbar = ({logout,user,cart, addToCart, deleteFromCart, clearCart, subTota
         <h2 className="font-bold text-xl">Shoping Cart
           <span onClick={toggleCart} className="absolute cursor-pointer top-8 right-8"><AiOutlinePoweroff className="hover:text-red-500" /></span></h2>
 
-        <Cart  cart={cart} addToCart={addToCart} deleteFromCart={deleteFromCart} clearCart={clearCart} subTotal={subTotal} />
+        <Cart cart={cart} addToCart={addToCart} deleteFromCart={deleteFromCart} clearCart={clearCart} subTotal={subTotal} />
       </div>
 
     </div>
