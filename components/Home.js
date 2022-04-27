@@ -36,15 +36,16 @@ const Home = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-                        <Image className="object-cover object-center rounded" alt="hero" src="/homefasion.jpg" width={720} height={600} />
+                    <div className="lg:max-w-lg lg:w-full lg:md:w-1/2 ">
+                        <Image className="object-cover object-center rounded" alt="shopping" src="/homefasion.jpg" width={720} height={600} />
                     </div>
                 </div>
             </section>
 
             <section className=" bg-slate-300 body-font">
-                <div className="container px-5 py-24 mx-auto flex flex-wrap">
-                    <div className="flex w-full mb-20 flex-wrap">
+                <div className="container mx-auto flex p-5 lg:px-32 py-8 flex-wrap ">
+                {/* <div className="container px-5 py-24  flex flex-wrap"> */}
+                    <div className="flex w-full lg:mb-20 mb-10 flex-wrap">
                         <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900 lg:w-1/3 lg:mb-0 mb-4">Buy your neccessary Product Upto 50% off + Free Delivary</h1>
                         <p className="lg:pl-6 lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom.</p>
                     </div>
@@ -75,7 +76,7 @@ const Home = () => {
                 </div>
             </section>
             <section className="text-gray-600 body-font">
-  <div className="container px-5 py-24 mx-auto flex flex-wrap">
+  <div className="container px-5 py-24 mx-auto flex flex-wrap p-5 lg:px-32   ">
     <div className="flex flex-wrap -mx-4 mt-auto mb-auto lg:w-1/2 sm:w-2/3 content-start sm:pr-10">
       <div className="w-full sm:p-4 px-4 mb-6">
         <h1 className="title-font font-medium text-xl mb-2 text-gray-900">Moon hashtag pop-up try-hard offal truffaut</h1>
@@ -98,7 +99,7 @@ const Home = () => {
         <p className="leading-relaxed">Products</p>
       </div>
     </div>
-    <div className="lg:w-1/2 sm:w-1/3 w-full rounded-lg overflow-hidden mt-6 sm:mt-0">
+    <div className="lg:w-1/2 sm:w-1/3 w-full rounded-lg  mt-6 sm:mt-0">
       <Image className="object-cover object-center w-full h-full" src="/mountain.jpg" alt="stats" width={600} height={300}/>
     </div>
   </div>
