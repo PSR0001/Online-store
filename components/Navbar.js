@@ -7,15 +7,10 @@ import { useRef } from "react";
 import Cart from "./Cart.js"
 
 
-const Navbar = ({logout,key,user,cart, addToCart, deleteFromCart, clearCart, subTotal}) => {
+const Navbar = ({logout,user,cart, addToCart, deleteFromCart, clearCart, subTotal}) => {
 
-  // console.log("hey",cart, addToCart, deleteFromCart, clearCart, subTotal,"hi");
   const [dropdown, setDropdown] = useState(false)
 
-  // const toggleDropdown=()=>{
-  //   // console.log("hi uysvhagvdcjhdgsafh");
-  //   setDropdown(!dropdown)
-  // }
 
   //toggle the cart
   const toggleCart = () => {
@@ -55,15 +50,17 @@ const Navbar = ({logout,key,user,cart, addToCart, deleteFromCart, clearCart, sub
         <div onMouseOver={()=>{setDropdown(true)}} onMouseLeave={()=>{setDropdown(false)}} className="border-2 border-gray-200 px-2  rounded-lg absolute right-24 top-12 bg-white ">
           
         <nav className="list-none m-3 text-sm py-1 font-bold">
+          <ul>
           <li>
            <Link href={'/myaccount'}  className="text-gray-400 hover:text-gray-800">My Account</Link>
-          </li>
-          <li key='orders'>
+           </li>
+          <li >
            <Link href={'/orders'} className="text-gray-400 hover:text-gray-800">Orders</Link>
           </li>
-          <li key='logout' onClick={logout}>
+          <li  onClick={logout}>
            <span  className="text-gray-400 hover:text-gray-800">Logout</span>
           </li>
+          </ul>
         </nav>
         </div>
 }
@@ -101,7 +98,6 @@ const Navbar = ({logout,key,user,cart, addToCart, deleteFromCart, clearCart, sub
         <Cart  cart={cart} addToCart={addToCart} deleteFromCart={deleteFromCart} clearCart={clearCart} subTotal={subTotal} />
       </div>
 
-    {/* <button onClick={clearCart}>hi guys</button> */}
     </div>
   );
 };
