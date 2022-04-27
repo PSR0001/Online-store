@@ -1,8 +1,20 @@
-import React from 'react'
-
+import React,{useEffect} from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+
 const Forgot = () => {
+  const router = useRouter();
+
+useEffect(() => {
+  if(localStorage.getItem('token')){
+    router.push('/')
+  }
+}, [])
+
+
+
+
   return (
     <div>
     

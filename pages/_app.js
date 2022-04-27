@@ -56,7 +56,7 @@ const logout=()=>{
 localStorage.removeItem("token")
 setKey(Math.random())
 setUser({value:null})
-
+router.push('/')
 }
 
 

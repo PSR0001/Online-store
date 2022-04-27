@@ -52,9 +52,9 @@ const Navbar = ({logout,key,user,cart, addToCart, deleteFromCart, clearCart, sub
 
          <a>
            {dropdown &&          
-        <div onMouseOver={()=>{setDropdown(true)}} onMouseLeave={()=>{setDropdown(false)}} className="border-2 border-gray-200 px-2  rounded-lg absolute right-24 top-12 bg-white">
+        <div onMouseOver={()=>{setDropdown(true)}} onMouseLeave={()=>{setDropdown(false)}} className="border-2 border-gray-200 px-2  rounded-lg absolute right-24 top-12 bg-white ">
           
-        <nav className="list-none m-3 text-sm py-1">
+        <nav className="list-none m-3 text-sm py-1 font-bold">
           <li key={'myaccount'}>
            <Link href={'/myaccount'}  className="text-gray-400 hover:text-gray-800">My Account</Link>
           </li>
