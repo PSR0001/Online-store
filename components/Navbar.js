@@ -12,10 +12,10 @@ const Navbar = ({key,user,cart, addToCart, deleteFromCart, clearCart, subTotal})
   // console.log("hey",cart, addToCart, deleteFromCart, clearCart, subTotal,"hi");
   const [dropdown, setDropdown] = useState(false)
 
-  const toggleDropdown=()=>{
-    // console.log("hi uysvhagvdcjhdgsafh");
-    setDropdown(!dropdown)
-  }
+  // const toggleDropdown=()=>{
+  //   // console.log("hi uysvhagvdcjhdgsafh");
+  //   setDropdown(!dropdown)
+  // }
 
   //toggle the cart
   const toggleCart = () => {
@@ -52,23 +52,22 @@ const Navbar = ({key,user,cart, addToCart, deleteFromCart, clearCart, subTotal})
 
          <a>
            {dropdown &&          
-        <div class="border-2 border-gray-200 px-2  rounded-lg absolute right-24 top-12 bg-white">
+        <div onMouseOver={()=>{setDropdown(true)}} onMouseLeave={()=>{setDropdown(false)}} className="border-2 border-gray-200 px-2  rounded-lg absolute right-24 top-12 bg-white">
           
-        <nav class="list-none m-3 text-sm py-1">
-          <li>
-            <a class="text-gray-400 hover:text-gray-800">My Account</a>
+        <nav className="list-none m-3 text-sm py-1">
+          <li key={'myaccount'}>
+           <Link href={'/myaccount'}  className="text-gray-400 hover:text-gray-800">My Account</Link>
           </li>
-          <li>
-            <a class="text-gray-400 hover:text-gray-800">Orders</a>
+          <li key={'orders'}>
+           <Link href={'/orders'} className="text-gray-400 hover:text-gray-800">Orders</Link>
           </li>
-          <li>
-            <a class="text-gray-400 hover:text-gray-800">Logout</a>
+          <li key={'logout'}>
+           <a  className="text-gray-400 hover:text-gray-800">Logout</a>
           </li>
-          
         </nav>
         </div>
 }
-        {user.value && <MdOutlineAccountCircle onMouseOver={toggleDropdown} className="text-3xl mx-3 hover:text-indigo-700 cursor-pointer" /> 
+        {user.value && <MdOutlineAccountCircle onMouseOver={()=>{setDropdown(true)}} onMouseLeave={()=>{setDropdown(false)}} className="text-3xl mx-3 hover:text-indigo-700 cursor-pointer" /> 
         }
         </a>
 
