@@ -34,7 +34,7 @@ const Login = () => {
       email: email, password: password,
     }
     // fetch("")
-    let response = await fetch('http://localhost:3000/api/login', {
+    let response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
