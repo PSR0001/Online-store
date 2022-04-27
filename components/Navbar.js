@@ -7,7 +7,7 @@ import { useRef } from "react";
 import Cart from "./Cart.js"
 
 
-const Navbar = ({key,user,cart, addToCart, deleteFromCart, clearCart, subTotal}) => {
+const Navbar = ({logout,key,user,cart, addToCart, deleteFromCart, clearCart, subTotal}) => {
 
   // console.log("hey",cart, addToCart, deleteFromCart, clearCart, subTotal,"hi");
   const [dropdown, setDropdown] = useState(false)
@@ -61,8 +61,8 @@ const Navbar = ({key,user,cart, addToCart, deleteFromCart, clearCart, subTotal})
           <li key={'orders'}>
            <Link href={'/orders'} className="text-gray-400 hover:text-gray-800">Orders</Link>
           </li>
-          <li key={'logout'}>
-           <a  className="text-gray-400 hover:text-gray-800">Logout</a>
+          <li key={'logout'} onClick={logout}>
+           <a   className="text-gray-400 hover:text-gray-800">Logout</a>
           </li>
         </nav>
         </div>

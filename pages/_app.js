@@ -50,6 +50,16 @@ function MyApp({ Component, pageProps }) {
   }, [router.query])
 
 
+// logout 
+const logout=()=>{
+
+localStorage.removeItem("token")
+setKey(Math.random())
+setUser({value:null})
+
+}
+
+
   //save the cart in local storage
   const saveToLocalStorage = (myCart) => {
     localStorage.setItem('cart', JSON.stringify(myCart))
@@ -113,7 +123,7 @@ function MyApp({ Component, pageProps }) {
         waitingTime={500}
         onLoaderFinished={() => setProgress(0)}
       />
-    <Navbar key={key} user={user}  cart={cart} addToCart={addToCart} deleteFromCart={deleteFromCart} clearCart={clearCart} subTotal={subTotal} />
+    <Navbar logout={logout} key={key} user={user}  cart={cart} addToCart={addToCart} deleteFromCart={deleteFromCart} clearCart={clearCart} subTotal={subTotal} />
   
     
     <Component cart={cart} addToCart={addToCart} deleteFromCart={deleteFromCart} clearCart={clearCart} subTotal={subTotal} {...pageProps} />
