@@ -5,42 +5,58 @@ import Link from 'next/link'
 import Script from 'next/script'
 
 
-const Checkout = () => {
-// const Checkout = ({cart,addToCart,deleteFromCart , subTotal}) => {
-// console.log(cart,addToCart,deleteFromCart , subTotal);
+// const Checkout = async() => {
+const Checkout =  ({ cart, addToCart, deleteFromCart, subTotal }) => {
+  // console.log(cart,addToCart,deleteFromCart , subTotal);
 
-  const initiatePayment=()=>{
+  const initiatePayment = async() => {
     let txnToken;
     let amount;
-    
+    const data = { cart, subTotal };
+
+    //setup the url
+
+    let url = (window.location.href).split('/checkout')
+
+    let a = await fetch(`${url[0]}/api/pretransaction`, {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+
+    let b = await a.json()
+    console.log(b);
+
 
     let config = {
       "root": "",
       "flow": "DEFAULT",
       "data": {
-      "orderId": Math.random(), /* update order id */
-      "token": txnToken, /* update token value */
-      "tokenType": "TXN_TOKEN",
-      "amount": amount /* update amount */
+        "orderId": Math.random(), /* update order id */
+        "token": txnToken, /* update token value */
+        "tokenType": "TXN_TOKEN",
+        "amount": amount /* update amount */
       },
       "handler": {
-        "notifyMerchant": function(eventName,data){
+        "notifyMerchant": function (eventName, data) {
           console.log("notifyMerchant handler function called");
-          console.log("eventName => ",eventName);
-          console.log("data => ",data);
-        } 
+          console.log("eventName => ", eventName);
+          console.log("data => ", data);
+        }
       }
     };
 
-    
-            // initialze configuration using init method 
-            window.Paytm.CheckoutJS.init(config).then(function onSuccess() {
-                // after successfully updating configuration, invoke JS Checkout
-                window.Paytm.CheckoutJS.invoke();
-            }).catch(function onError(error){
-                console.log("error => ",error);
-            });
-  
+
+    // initialze configuration using init method 
+    window.Paytm.CheckoutJS.init(config).then(function onSuccess() {
+      // after successfully updating configuration, invoke JS Checkout
+      window.Paytm.CheckoutJS.invoke();
+    }).catch(function onError(error) {
+      console.log("error => ", error);
+    });
+
   }
 
 
@@ -48,11 +64,11 @@ const Checkout = () => {
   return (
     <div>
 
-<Head>
-<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0"/>
-</Head>
+      <Head>
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0" />
+      </Head>
 
-<Script type="application/javascript" crossorigin="anonymous" src={`${process.env.PAYTM_HOST}/merchantpgpui/checkoutjs/merchants/${process.env.PAYTM_MID}.js`} onload="onScriptLoad();"/> 
+      <Script type="application/javascript" crossorigin="anonymous" src={`${process.env.PAYTM_HOST}/merchantpgpui/checkoutjs/merchants/${process.env.PAYTM_MID}.js`} onload="onScriptLoad();" />
 
 
 
@@ -94,14 +110,14 @@ const Checkout = () => {
 
                 <div className="flex justify-between items-center pt-2">
                   <button type="button" className="h-12 w-24 text-blue-500 text-xs font-medium">Return to cart</button>
-                  
-                   <Link href={'/order'}><button type="button" className="h-12 w-48 rounded font-medium text-xs bg-blue-500 text-white">Continue to Shipping</button></Link> </div>
-                   <Link href={'/checkout'}><button onClick={initiatePayment} type="button" className="h-12 w-48 rounded font-medium text-xs bg-blue-500 text-white">Pay {}</button></Link> </div>
-              </div>
+
+                  <Link href={'/order'}><button type="button" className="h-12 w-48 rounded font-medium text-xs bg-blue-500 text-white">Continue to Shipping</button></Link> </div>
+                <Link href={'/checkout'}><button onClick={initiatePayment} type="button" className="h-12 w-48 rounded font-medium text-xs bg-blue-500 text-white">Pay { }</button></Link> </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
     // </div>
 
   )
