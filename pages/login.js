@@ -33,8 +33,12 @@ const Login = () => {
     const data = {
       email: email, password: password,
     }
+    let url = (window.location.href).split('/login')
+    // console.log(url);
+
     // fetch("")
-    let response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
+    let response = await fetch(`${url[0]}/api/login`, {
+    // let response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',

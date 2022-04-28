@@ -42,8 +42,9 @@ const Signup = () => {
     const data = {
       name:name,email:email,password:password,cpassword:cpassword
     }
+    let url = (window.location.href).split('/signup')
     // fetch("")
-    let response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/signup`, {
+    let response = await fetch(`${url[0]}/api/signup`, {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
