@@ -1,9 +1,62 @@
 import React from 'react'
 import Image from 'next/image'
+import Head from 'next/head'
 import Link from 'next/link'
+import Script from 'next/script'
+
+
 const Checkout = () => {
+// const Checkout = ({cart,addToCart,deleteFromCart , subTotal}) => {
+// console.log(cart,addToCart,deleteFromCart , subTotal);
+
+  const initiatePayment=()=>{
+    let txnToken;
+    let amount;
+    
+
+    let config = {
+      "root": "",
+      "flow": "DEFAULT",
+      "data": {
+      "orderId": Math.random(), /* update order id */
+      "token": txnToken, /* update token value */
+      "tokenType": "TXN_TOKEN",
+      "amount": amount /* update amount */
+      },
+      "handler": {
+        "notifyMerchant": function(eventName,data){
+          console.log("notifyMerchant handler function called");
+          console.log("eventName => ",eventName);
+          console.log("data => ",data);
+        } 
+      }
+    };
+
+    
+            // initialze configuration using init method 
+            window.Paytm.CheckoutJS.init(config).then(function onSuccess() {
+                // after successfully updating configuration, invoke JS Checkout
+                window.Paytm.CheckoutJS.invoke();
+            }).catch(function onError(error){
+                console.log("error => ",error);
+            });
+  
+  }
+
+
+
   return (
     <div>
+
+<Head>
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0"/>
+</Head>
+
+<Script type="application/javascript" crossorigin="anonymous" src={`${process.env.PAYTM_HOST}/merchantpgpui/checkoutjs/merchants/${process.env.PAYTM_MID}.js`} onload="onScriptLoad();"/> 
+
+
+
+
 
       <div className="bg-slate-200">
         <div className="py-12">
@@ -43,12 +96,13 @@ const Checkout = () => {
                   <button type="button" className="h-12 w-24 text-blue-500 text-xs font-medium">Return to cart</button>
                   
                    <Link href={'/order'}><button type="button" className="h-12 w-48 rounded font-medium text-xs bg-blue-500 text-white">Continue to Shipping</button></Link> </div>
+                   <Link href={'/checkout'}><button onClick={initiatePayment} type="button" className="h-12 w-48 rounded font-medium text-xs bg-blue-500 text-white">Pay {}</button></Link> </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    // </div>
 
   )
 }

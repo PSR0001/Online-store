@@ -127,7 +127,7 @@ router.push('/')
      <Navbar logout={logout} key={key} user={user}  cart={cart} addToCart={addToCart} deleteFromCart={deleteFromCart} clearCart={clearCart} subTotal={subTotal} />
   
     
-    <Component  {...pageProps} />
+    <Component cart={cart} addToCart={addToCart} deleteFromCart={deleteFromCart} clearCart={clearCart} subTotal={subTotal} {...pageProps} />
     <Footer />
   </>
 }
