@@ -5,17 +5,17 @@ import Link from 'next/link'
 import Script from 'next/script'
 
 
-// const Checkout = async() => {
 const Checkout =  ({ cart, addToCart, deleteFromCart, subTotal }) => {
   // console.log(cart,addToCart,deleteFromCart , subTotal);
 
   const initiatePayment = async() => {
-    let txnToken;
+    
     let amount;
-    const data = { cart, subTotal };
+    let oid = Math.floor(Math.random()* Date.now());
+
+    const data = { cart, subTotal , oid,email:"email"};
 
     //setup the url
-
     let url = (window.location.href).split('/checkout')
 
     let a = await fetch(`${url[0]}/api/pretransaction`, {
@@ -26,18 +26,18 @@ const Checkout =  ({ cart, addToCart, deleteFromCart, subTotal }) => {
       body: JSON.stringify(data),
     })
 
-    let b = await a.json()
-    console.log(b);
+    let txnToken = await a.json()
+    console.log(txnToken);
 
 
     let config = {
       "root": "",
       "flow": "DEFAULT",
       "data": {
-        "orderId": Math.random(), /* update order id */
-        "token": txnToken, /* update token value */
+        "orderId":oid, 
+        "token": txnToken, 
         "tokenType": "TXN_TOKEN",
-        "amount": amount /* update amount */
+        "amount": amount 
       },
       "handler": {
         "notifyMerchant": function (eventName, data) {
@@ -68,7 +68,7 @@ const Checkout =  ({ cart, addToCart, deleteFromCart, subTotal }) => {
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0" />
       </Head>
 
-      <Script type="application/javascript" crossorigin="anonymous" src={`${process.env.PAYTM_HOST}/merchantpgpui/checkoutjs/merchants/${process.env.PAYTM_MID}.js`} onload="onScriptLoad();" />
+      <Script type="application/javascript" crossorigin="anonymous" src={`${process.env.PAYTM_HOST}/merchantpgpui/checkoutjs/merchants/${process.env.PAYTM_MID}.js`}  />
 
 
 

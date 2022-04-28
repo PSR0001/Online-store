@@ -1,70 +1,80 @@
 const https = require('https');
-const PaytmChecksum = require('./PaytmChecksum');
+const PaytmChecksum = require('paytmchecksum');
 
+export default async function handler(req, res) {
 
-export default function handler(req, res) {
-
-    if (res.method == "POST") {
+    if (req.method == "POST") {
 
         var paytmParams = {};
 
         paytmParams.body = {
             "requestType": "Payment",
-            "mid": "YOUR_MID_HERE",
+            "mid": process.env.PAYTM_EID,
             "websiteName": "YOUR_WEBSITE_NAME",
-            "orderId": "ORDERID_98765",
-            "callbackUrl": "https://<callback URL to be used by merchant>",
+            "orderId": req.body.oid,
+            "callbackUrl": `${process.env.PAYTM_HOST}/api/posttransaction`,
             "txnAmount": {
-                "value": "1.00",
+                "value": req.body.subTotal,
                 "currency": "INR",
             },
             "userInfo": {
-                "custId": "CUST_001",
+                "custId": req.body.email,
             },
         };
 
-        /*
-        * Generate checksum by parameters we have in body
-        * Find your Merchant Key in your Paytm Dashboard at https://dashboard.paytm.com/next/apikeys 
-        */
-        PaytmChecksum.generateSignature(JSON.stringify(paytmParams.body), "YOUR_MERCHANT_KEY").then(function (checksum) {
+        let checksum = await PaytmChecksum.generateSignature(JSON.stringify(paytmParams.body), process.env.PAYTM_KEY)
 
-            paytmParams.head = {
-                "signature": checksum
-            };
 
-            var post_data = JSON.stringify(paytmParams);
+        paytmParams.head = {
+            "signature": checksum
+        };
 
-            var options = {
+        var post_data = JSON.stringify(paytmParams);
 
-                /* for Staging */
-                hostname: 'securegw-stage.paytm.in',
 
-                /* for Production */
-                // hostname: 'securegw.paytm.in',
 
-                port: 443,
-                path: '/theia/api/v1/initiateTransaction?mid=YOUR_MID_HERE&orderId=ORDERID_98765',
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Content-Length': post_data.length
-                }
-            };
+        const requestAsync = async () => {
+            return new Promise((reslove, reject) => {
+                var options = {
 
-            var response = "";
-            var post_req = https.request(options, function (post_res) {
-                post_res.on('data', function (chunk) {
-                    response += chunk;
+                    /* for Staging */
+                    // hostname: 'securegw-stage.paytm.in',
+
+                    /* for Production */
+                    hostname: 'securegw.paytm.in',
+
+                    port: 443,
+                    path: `/theia/api/v1/initiateTransaction?mid=${process.env.PAYTM_MID}&orderId=${req.body.oid}`,
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Content-Length': post_data.length
+                    }
+                };
+
+                var response = "";
+                var post_req = https.request(options, function (post_res) {
+                    post_res.on('data', function (chunk) {
+                        response += chunk;
+                    });
+
+                    post_res.on('end', function () {
+                        console.log('Response: ', response);
+                        reslove(response)
+                    });
                 });
 
-                post_res.on('end', function () {
-                    console.log('Response: ', response);
-                });
-            });
+                post_req.write(post_data);
+                post_req.end();
+            })
 
-            post_req.write(post_data);
-            post_req.end();
-        });
+
+        }
+
+    let myr = await requestAsync()
+    res.status(200).json(myr)
+
+
     }
+
 }
